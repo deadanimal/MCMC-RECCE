@@ -1,0 +1,438 @@
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome</h6>
+          <br />
+          <h6 class="h3 text-white text-uppercase d-inline-block mb-0">
+            "Register of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">Reporting</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total Visitors
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.VisitorGetTable.length | number }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-red text-white rounded-circle shadow"
+              >
+                <i class="ni ni-active-40"> </i>
+              </div>
+            </div>
+          </div>
+          <!--mt-3-->
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total TAC
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.TACData | number }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow"
+              >
+                <i class="ni ni-chart-pie-35"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                IMEI Number
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.IMEIData | number }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-green text-white rounded-circle shadow"
+              >
+                <i class="ni ni-money-coins"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Serial Number
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.SERIALData | number }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-info text-white rounded-circle shadow"
+              >
+                <i class="ni ni-chart-bar-32"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total Search For This Month
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0">{{
+                this.thisMonthSearch | number
+              }}</span>
+            </div>
+
+            <!--<div class="col-auto">
+									<div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+										<i class="ni ni-active-40"> </i>
+									</div>
+								</div>-->
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total New Data For This Month
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.currentProduct | number }}
+              </span>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total Data
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.TOTALData | number }}
+              </span>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total User
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0"> {{this.userdata.length | number}} </span>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total Visitors
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.VisitorGetTable.length | number }}
+              </span>
+            </div>
+            <div class="text-right">
+            <select
+              class="form-control-sm"
+              id="toggleEmail2"
+              (change)="toggleEmail2($event.target.value)"
+            >
+              <optgroup label="By Total">
+                <option value="total">Total</option>
+              </optgroup>
+              <optgroup label="By Year">
+                <option value="new">2020</option>
+                <option value="exist">2021</option>
+                <option value="y2022" selected="selected">2022</option>
+              </optgroup>
+            </select><br></div>
+            <div class="chart">
+              <!--change to bar chart-->
+              <div class="amchart" id="visitorChart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total Search 
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0"> {{this.percent}}% </span>
+            </div>
+            <div class="text-right">
+            <select
+              class="form-control-sm"
+              id="toggleEmail"
+              (change)="toggleEmail($event.target.value)"
+            >
+              <optgroup label="By Total">
+                <option value="total">Total</option>
+              </optgroup>
+              <optgroup label="By Year">
+                <option value="new">2020</option>
+                <option value="y2021">2021</option>
+                <option value="y2022" selected="selected">2022</option>
+              </optgroup>
+            </select><br></div>
+            <div class="chart">
+              <div class="amchart" id="systemChart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0">
+                Total Search by Categories
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.totalSearch | number }}
+              </span>
+            </div>
+            <div class="text-right">
+              <select
+                class="form-control-sm"
+                id="toggleEmail3"
+                (change)="toggleEmail3($event.target.value)"
+              >
+              <optgroup label="For 2021">
+                <option value="new">Current Year</option>
+                <option value="exist" selected="selected">Current Month</option>
+              </optgroup>
+              </select><br>
+            </div>
+            <div class="chart">
+              <div
+                class="amchart"
+                id="totalSearch"
+                style="width: 100%; height: 350px"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-7 col-4 text-right">
+      <button
+        class="btn btn-lg btn-neutral"
+        (click)="changeState()"
+        style="width: 200px"
+      >
+        MASTER GRAPH
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="card" *ngIf="state">
+        <div class="card-header bg-secondary">
+          <h3 class="m-0">Master Graph</h3>
+        <div class="text-right">
+              <select
+                class="form-control-sm"
+                id="toggleEmail4"
+                (change)="toggleEmail4($event.target.value)"
+              >
+                <optgroup label="By Total">
+                <option value="total">Total</option>
+              </optgroup>
+              <optgroup label="By Year">
+                <option value="exist" selected="selected">2015</option>
+                <option value="new">2016</option>
+              </optgroup>
+              </select>
+              <br>
+            </div>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <h3>Product Registration (IMEI vs Serial Number)</h3>
+          </div>
+          <div class="chart">
+            <div class="amchart" id="MasterGraphChart"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <h3>Product Certification (Radio vs Telephony vs Hybrid)</h3>
+          </div>
+          <div class="text-right">
+            <select
+              class="form-control-sm"
+              id="toggleEmail4"
+              (change)="toggleEmail5($event.target.value)"
+            >
+              <optgroup label="By Total">
+              <option value="total">Total</option>
+            </optgroup>
+            <optgroup label="By Year">
+              <option value="y2015" selected="selected">2015</option>
+              <option value="y2016">2016</option>
+              <option value="y2017">2017</option>
+              <option value="y2018">2018</option>
+              <option value="y2019">2019</option>
+              <option value="y2020">2020</option>
+              <option value="y2021">2021</option>
+            </optgroup>
+            </select><br>
+          </div>
+          <div class="chart">
+            <div class="amchart" id="MasterGraphChart2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

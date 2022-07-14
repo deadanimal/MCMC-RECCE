@@ -1,0 +1,160 @@
+<ngx-loading-bar></ngx-loading-bar>
+
+<section class="section section-sm section-shaped pb-250">
+  <!-- Circles background -->
+  <div class="shape shape-style-1 shape-default alpha-4">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- SVG separator -->
+  <div class="separator separator-bottom separator-skew">
+    <svg
+      x="0"
+      y="0"
+      viewBox="0 0 2560 100"
+      preserveAspectRatio="none"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon class="fill-secondary" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
+<section class="section-secondary section-lg">
+  <div class="d-flex align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary border-0 mb-0 mt--250">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="logo-box">
+                <img class="logo" [src]="imgLogo" />
+              </div>
+              <form [formGroup]="loginForm">
+                <div
+                  class="form-group mb-3"
+                  [ngClass]="{ focused: focusUsername === true }"
+                >
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-primary">
+                        <i class="fas fa-envelope text-white"></i>
+                      </span>
+                    </div>
+                    <input
+                      class="form-control"
+                      placeholder="Email"
+                      type="email"
+                      formControlName="username"
+                      (focus)="focusUsername = true"
+                      (blur)="focusUsername = false"
+                    />
+                  </div>
+                  <ng-container
+                    *ngFor="let message of loginFormMessages.username"
+                  >
+                    <div
+                      *ngIf="
+                        loginForm.get('username').hasError(message.type) &&
+                        (loginForm.get('username').dirty ||
+                          loginForm.get('username').touched)
+                      "
+                    >
+                      <p class="error-message">
+                        <span>{{ message.message }}</span>
+                      </p>
+                    </div>
+                  </ng-container>
+                </div>
+
+                <div
+                  class="form-group"
+                  [ngClass]="{ focused: focusPassword === true }"
+                >
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-primary">
+                        <i class="fas fa-lock text-white"></i>
+                      </span>
+                    </div>
+                    <input
+                      class="form-control"
+                      placeholder="Password"
+                      type="password"
+                      formControlName="password"
+                      (focus)="focusPassword = true"
+                      (blur)="focusPassword = false"
+                    />
+                  </div>
+                  <div class="validation-errors">
+                    <ng-container
+                      *ngFor="let message of loginFormMessages.password"
+                    >
+                      <div
+                        *ngIf="
+                          loginForm.get('password').hasError(message.type) &&
+                          (loginForm.get('password').dirty ||
+                            loginForm.get('password').touched)
+                        "
+                      >
+                        <p class="error-message">
+                          <span>{{ message.message }}</span>
+                        </p>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <div
+                      class="custom-control custom-control-alternative custom-checkbox"
+                    >
+                      <input
+                        class="custom-control-input"
+                        id="customCheckLogin"
+                        type="checkbox"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="customCheckLogin"
+                      >
+                        <span>Remember me?</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-primary my-4 btn-block"
+                    (click)="ad_login()"
+                    [disabled]="!loginForm.valid"
+                  >
+                    Sign in through AD
+                  </button>
+                </div>
+              </form>
+
+              <!-- <div class="text-center">
+                <button
+                  type="button"
+                  class="btn btn-primary my-4 btn-block"
+                  (click)="login()"
+                >
+                  Sign in
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

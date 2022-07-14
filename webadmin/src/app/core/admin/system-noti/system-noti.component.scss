@@ -1,0 +1,16 @@
+.bg-info {
+    background-color: #086ca4 !important;
+}
+
+table tr {
+    counter-increment: row-num;
+}
+
+table tr td:first-child::before {
+    content: counter(row-num) ". ";
+}
+
+.chart {
+    position: relative !important;
+    height: 200px !important;
+}

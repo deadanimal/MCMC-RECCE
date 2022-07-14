@@ -1,0 +1,772 @@
+<ngx-loading-bar></ngx-loading-bar>
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-8 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome,</h6>
+          <br />
+          <h6 class="h3 text-white text-uppercase d-inline-block mb-0">
+            "Register of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">API Configuration</h6>
+        </div>
+        <!--<div class="col-lg-12 col-5 text-right">
+          <a class="btn btn-sm btn-info" (click)="testSendEmail()"> API Call </a>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <!--<div class="row">
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="ml-2">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total System Usage
+              </h5>
+            </div>
+            <div class="chart mx-auto">
+              <circle-progress
+                [percent]="55"
+                [radius]="85"
+                [space]="-20"
+                [outerStrokeGradient]="false"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="20"
+                [outerStrokeColor]="'#83b5d9'"
+                [innerStrokeColor]="'#e7e8ea'"
+                [animation]="true"
+                [animationDuration]="300"
+                [animateTitle]="true"
+                [subtitle]="'System Usage'"
+              ></circle-progress>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Portal Performance
+              </h5>
+            </div>
+            <div class="chart mx-auto">
+              <circle-progress
+                [percent]="90"
+                [radius]="85"
+                [space]="-20"
+                [outerStrokeGradient]="false"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="20"
+                [outerStrokeColor]="'#83b5d9'"
+                [innerStrokeColor]="'#e7e8ea'"
+                [animation]="true"
+                [animationDuration]="300"
+                [animateTitle]="true"
+                [subtitle]="'Performance'"
+              ></circle-progress>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Bounce Rate
+              </h5>
+            </div>
+            <div class="chart">
+              <div class="amchart" id="bounce"></div>
+            </div>
+          </div>
+
+          <p class="mt-3 mb-0 text-sm">
+          <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8">
+          <h3>List of Certifying Agency (CA)</h3>
+          <h6 class="ml-2">To add and update Certifying Agency (CA)</h6>
+        </div>
+        <div class="col-4 text-right">
+          <br />
+          <button
+            class="btn btn-sm btn-neutral btn-round btn-icon"
+            (click)="openModal(NewAgency, 'create', '')"
+            tooltip="Add New Certified Agency"
+            placement="top"
+          >
+            <span class="btn-inner--icon">
+              <i class="fas fa-user-edit"> </i>
+            </span>
+
+            <span class="btn-inner--text"> Add </span>
+          </button>
+          <button
+            class="btn btn-sm btn-neutral btn-round btn-icon"
+            (click)="Test()"
+            placement="top"
+          >
+            <span class="btn-inner--icon">
+              <i class="fas fa-user-edit"> </i>
+            </span>
+
+            <span class="btn-inner--text"> Test Connection </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="dataTables_wrapper">
+      <ngx-datatable
+        class="bootstrap selection-cell"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="tableEntries != -1 ? tableEntries : undefined"
+        [rows]="tableAgencyData"
+        [sorts]="[{ prop: 'email', dir: 'asc' }]"
+      >
+        <ngx-datatable-column [sortable]="false" name="No">
+          <ng-template
+            let-rowIndex="rowIndex"
+            let-row="row"
+            ngx-datatable-cell-template
+          >
+            <strong>{{ rowIndex + 1 }}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="email">
+          <ng-template ngx-datatable-header-template>
+            <span>Certified Agency Name</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.ca_name }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Appoint Date</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.appoint_date | date: "dd/MM/yyyy" }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Expiry Date</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.expiry_date | date: "dd/MM/yyyy" }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>PIC</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.pic_name }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Status</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <span
+                  *ngIf="row.is_active == true"
+                  class="badge badge-pill badge-success"
+                  >Enable</span
+                >
+                <span
+                  *ngIf="row.is_active == false"
+                  class="badge badge-pill badge-warning"
+                  >Disable</span
+                >
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Action</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a
+              class="table-action"
+              tooltip="Edit agency info"
+              placement="right"
+              (click)="openModal(editInfo, 'update', row)"
+            >
+              <i class="fas fa-user-edit"> </i>
+            </a>
+            <a
+              class="table-action table-action-delete"
+              tooltip="Configure API"
+              placement="right"
+              (click)="openModal(editConfigure, 'configure', row)"
+            >
+              <i class="fas fa-cogs"> </i>
+            </a>
+            <!--<a
+              class="table-action table-action-delete"
+              tooltip="Delete"
+              placement="right"
+              (click)="confirm(row)"
+            >
+              <i class="fas fa-trash"> </i>
+            </a>-->
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+
+  <!--<div class="card">
+    <tabset>
+      <tab
+        ><ng-template tabHeading>
+          <div class="h4">Certified Agency (SIRIM)</div>
+        </ng-template>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-control-label" for="example2cols1Input">
+                  Service Name
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder="GetNewCertifiedProduct"
+                  type="text"
+                  [disabled]="true"
+                />
+
+                <label class="form-control-label mt-2" for="example2cols1Input">
+                  IP Address
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder="192.168.1.2"
+                  type="text"
+                  [disabled]="true"
+                />
+
+                <label class="form-control-label mt-2" for="example2cols1Input">
+                  Subnet Mask
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder="255.255.255.0"
+                  type="text"
+                  [disabled]="true"
+                />
+
+                <label class="form-control-label mt-2" for="example2cols1Input">
+                  Default Gateway
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder="192.168.1.254"
+                  type="text"
+                  [disabled]="true"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-control-label" for="example2cols2Input">
+                  URL
+                </label>
+
+                <input
+                  class="form-control"
+                  id="example2cols2Input"
+                  placeholder="http://api.example.com/device-management/managed-devices"
+                  type="text"
+                  [disabled]="true"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-5 text-right">
+              <a class="btn btn-primary" href="javascript:void(0)"> Save </a>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab>
+        <ng-template tabHeading>
+          <div class="h4">Certified Agency</div>
+        </ng-template>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-control-label" for="example2cols1Input">
+                  Service Name
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder=""
+                  type="text"
+                  [disabled]="false"
+                />
+
+                <label class="form-control-label mt-2" for="example2cols1Input">
+                  IP Address
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder=""
+                  type="text"
+                  [disabled]="false"
+                />
+
+                <label class="form-control-label mt-2" for="example2cols1Input">
+                  Subnet Mask
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder=""
+                  type="text"
+                  [disabled]="false"
+                />
+
+                <label class="form-control-label mt-2" for="example2cols1Input">
+                  Default Gateway
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder=""
+                  type="text"
+                  [disabled]="false"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-control-label" for="example2cols2Input">
+                  URL
+                </label>
+
+                <input
+                  class="form-control"
+                  placeholder=""
+                  type="text"
+                  [disabled]="false"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-5 text-right">
+              <a class="btn btn-primary" href="javascript:void(0)"> Save </a>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>-->
+</div>
+
+<ng-template #NewAgency>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Add New Certified Agency
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="newAgencyForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Agency Name</label>
+            <input
+              class="form-control"
+              placeholder="Enter Agency Name"
+              formControlName="ca_name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Appoint Date</label>
+            <input
+              placeholder="Enter Appoint Date"
+              class="form-control form-control-label"
+              formControlName="appoint_date"
+              #dp="bsDatepicker"
+              bsDatepicker
+              [bsConfig]="{
+                isAnimated: true,
+                dateInputFormat: 'YYYY-MM-DD',
+                containerClass: 'theme-dark-blue'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Expire Date</label>
+            <input
+              placeholder="Enter Appoint Date"
+              class="form-control form-control-label"
+              formControlName="expiry_date"
+              #dp="bsDatepicker"
+              bsDatepicker
+              [bsConfig]="{
+                isAnimated: true,
+                dateInputFormat: 'YYYY-MM-DD',
+                containerClass: 'theme-dark-blue'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">PIC Name</label>
+            <input
+              class="form-control"
+              placeholder="Enter PIC Name"
+              formControlName="pic_name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Active</label>
+            <select
+              type="search"
+              class="form-control form-control-label"
+              formControlName="is_active"
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+              <option selected class="text-muted">Please Choose</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Remarks</label>
+            <input
+              class="form-control"
+              placeholder="Enter Remarks"
+              height="48px"
+              formControlName="remarks"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="addNewAgency()">
+      Add
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #editConfigure>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Configure
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editAgencyForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Service Name</label>
+            <input class="form-control" formControlName="ca_name" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Token</label>
+            <input class="form-control" formControlName="ip_address" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Request URL</label>
+            <input class="form-control" formControlName="url" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Username</label>
+            <input class="form-control" formControlName="path" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Password</label>
+            <input class="form-control" formControlName="port" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="configure()">
+      Save
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #editInfo>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Edit Agency Info
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editAgencyForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Agency Name</label>
+            <input
+              class="form-control"
+              placeholder="Enter Agency Name"
+              formControlName="ca_name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Agency ID</label>
+            <input
+              class="form-control"
+              placeholder="Enter Agency ID"
+              formControlName="ca_id"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Appoint Date</label>
+            <input
+              placeholder="Enter Appoint Date"
+              class="form-control form-control-label"
+              formControlName="appoint_date"
+              #dp="bsDatepicker"
+              bsDatepicker
+              [bsConfig]="{
+                isAnimated: true,
+
+                containerClass: 'theme-dark-blue'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Expire Date</label>
+            <input
+              placeholder="Enter Appoint Date"
+              class="form-control form-control-label"
+              formControlName="expiry_date"
+              #dp="bsDatepicker"
+              bsDatepicker
+              [bsConfig]="{
+                isAnimated: true,
+
+                containerClass: 'theme-dark-blue'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">PIC Name</label>
+            <input
+              class="form-control"
+              placeholder="Enter PIC Name"
+              formControlName="pic_name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Active</label>
+            <select
+              type="search"
+              class="form-control form-control-label"
+              formControlName="is_active"
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+              <option selected class="text-muted">Please Choose</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Remarks</label>
+            <input
+              class="form-control"
+              placeholder="Enter Remarks"
+              height="48px"
+              formControlName="remarks"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="update()">
+      Save
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

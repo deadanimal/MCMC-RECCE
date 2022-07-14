@@ -1,0 +1,1739 @@
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-8 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome,</h6>
+          <br />
+          <h6 class="h3 text-white text-uppercase d-inline-block mb-0">
+            "Register of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">Data Search</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <!--Infomation Charts-->
+  <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total Visitors
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0"> {{this.VisitorGetTable.length | number}} </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-red text-white rounded-circle shadow"
+              >
+                <i class="ni ni-active-40"> </i>
+              </div>
+            </div>
+          </div>
+          <!--mt-3-->
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total TAC
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{this.TACData | number}}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow"
+              >
+                <i class="ni ni-chart-pie-35"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                IMEI Number
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{this.IMEIData | number}}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-green text-white rounded-circle shadow"
+              >
+                <i class="ni ni-money-coins"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Serial Number
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.serialData | number}}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-gradient-info text-white rounded-circle shadow"
+              >
+                <i class="ni ni-chart-bar-32"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Tabs Table-->
+  <div class="row">
+    <div class="col">
+      <tabset
+        type="pills"
+        class="nav-fill flex-column flex-md-row"
+        [justified]="true"
+      >
+        <!--Product Registration Table-->
+        <tab heading="Product Registration">
+          <div class="row">
+            <div class="col">
+              <div class="card mt-4">
+                <div id="datatable_filter" class="mt-4 ml-4 mr-4">
+                  <div class="row">
+                    <label class="form-control-label">
+                      Search by column:
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <form [formGroup]="RegisterSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="SLPID">
+                            SLP ID
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="SLPID"
+                            [(ngModel)]="required1"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="RegType">
+                            Type of Registration
+                          </label>
+                          <select
+                            type="search"
+                            class="form-control form-control-sm"
+                            aria-controls="datatable"
+                            formControlName="RegType"
+                          >
+                            <option value="SerialNo">Serial Number</option>
+                            <option value="IMEI">IMEI Number</option>
+                            <option value="" selected class="text-muted">
+                              -- Please Choose --
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="form-control-label" for="CA">
+                            CA 
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="ca_owner"
+                          />
+                        </div>
+
+                      </form>
+                    </div>
+                    <div class="col-4">
+                      <form [formGroup]="RegisterSearchForm">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="Product Registration No."
+                          >
+                            Product Registration No.
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="ProductRegistrationNo"
+                            [(ngModel)]="required2"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label class="form-control-label" for="IMEI">
+                            IMEI
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="imei"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="CreatedDate">
+                            Created Date
+                          </label>
+                          
+                          <input
+                            placeholder="Show All"
+                            class="form-control form-control-sm"
+                            formControlName="CreatedDate"
+                            #dp="bsDaterangepicker"
+                            [(ngModel)]="selectedDate"
+                            bsDaterangepicker
+                            [bsConfig]="{
+                              isAnimated: true,
+                              dateInputFormat: 'YYYY-MM-DD',
+                              containerClass: 'theme-dark-blue'
+                            }"
+                          />
+                          </div>
+
+                      </form>
+                    </div>
+                    <div class="col-4">
+                      <form [formGroup]="RegisterSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="TAC">
+                            TAC
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="TAC"
+                            [(ngModel)]="required3"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label class="form-control-label" for="SerialNo">
+                            Serial Number
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="SerialNo"
+                          />
+                        </div>
+                        
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col text-right mb-4 ml--4">
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        (click)="filterTableRegister()"
+                      >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card mt-4">
+                <div class="dataTables_wrapper py-4">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="dataTables_length" id="datatable_length">
+                        <label>
+                          Show
+                          <select
+                            name="datatable_length"
+                            aria-controls="datatable"
+                            class="form-control form-control-sm"
+                            (change)="entryChange($event)"
+                          >
+                            <!--<option value="5">5</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="-1">All</option>-->
+                            <option value="20">20</option>
+                          </select>
+                          records
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col-md-6 text-right ml--4">
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        style="width: 100px"
+                        (click)="confirmRegBulk()"
+                        [disabled]="this.userData !='AD'"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        style="width: 100px"
+                        (click)="openModal(addRegisterData)"
+                      >
+                        Add File
+                      </button>
+                      <button
+                        class="btn btn-sm btn-secondary"
+                        style="width: 100px"
+                        [disabled]="!required1 && !required2 && !required3 || !selectedDate"
+                        (click)="confirmExport()" 
+                        
+                      >
+                        Export
+                      </button>
+                    </div>
+                  </div>
+
+                  <ngx-datatable
+                    #table
+                    class="bootstrap selection-cell"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="'auto'"
+                    [rows]="infoTable"
+                    [limit]="tableEntries != -1 ? tableEntries : undefined"
+                    (activate)="onActivate($event)"
+                    [sortable]="true"
+                    [sorts]="[{ prop: 'email', dir: 'asc' }]"
+                    [scrollbarH]="true"
+                    [paging]="false"
+                  >
+                  <ngx-datatable-column [width]="80">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                id="customCheck+{{row.Id}}" (change)="checkRow(row)"
+                                [(ngModel)]="row.isTick">
+                            <label class="custom-control-label" for="customCheck+{{row.Id}}">
+                            </label>
+                        </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+                    <ngx-datatable-column name="No" [width]="100">
+                      <ng-template
+                        let-rowIndex="rowIndex"
+                        let-row="row"
+                        ngx-datatable-cell-template
+                      >
+                        <strong>{{ rowIndex + 1 }}</strong>
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="SLPID">
+                      <ng-template ngx-datatable-header-template>
+                        <span>SLP ID</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.SLPID }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                  <ngx-datatable-column prop="ProductRegistrationNo">
+                    <ng-template ngx-datatable-header-template>
+                      <span>Product Registration No</span>
+                    </ng-template>
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.ProductRegistrationNo }}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column  prop="TAC">
+                    <ng-template ngx-datatable-header-template>
+                      <span>TAC</span>
+                    </ng-template>
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.TAC }}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                    <ngx-datatable-column  prop="RegType">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Type of Registration</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.RegType }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column  prop="IMEI">
+                      <ng-template ngx-datatable-header-template>
+                        <span>IMEI No.</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.IMEI }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column  prop="SerialNo">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Serial No.</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.SerialNo }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <!--<ngx-datatable-column>
+                      <ng-template ngx-datatable-header-template>
+                        <span>File No</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.FileNo }}
+                      </ng-template>
+                    </ngx-datatable-column>-->
+
+                    <ngx-datatable-column>
+                      <ng-template ngx-datatable-header-template>
+                        <span>CA</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.CA_owner }}
+                      </ng-template>
+                      
+                    </ngx-datatable-column>
+                    <ngx-datatable-column  prop="created_date">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Created Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <!-- {{ row.created_date | date: "dd/MM/yyyy"  }} -->
+                        {{ row.created_date.slice(0,10)  }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <!--<ngx-datatable-column>
+                      <ng-template ngx-datatable-header-template>
+                        <span>Action</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a
+                          class="table-action table-action-delete"
+                          tooltip="Delete"
+                          placement="top"
+                          (click)="confirm(row)"
+                        >
+                          <i class="fas fa-trash"> </i>
+                        </a>
+                      </ng-template>
+                    </ngx-datatable-column>-->
+                    <ngx-datatable-footer>
+                      <ng-template 
+                        ngx-datatable-footer-template
+                        let-rowCount="rowCount"
+                        let-pageSize="pageSize"
+                        let-selectedCount="selectedCount"
+                        let-curPage="curPage"
+                        let-offset="offset"
+                        let-isVisible="isVisible">
+                          <div class="page-count">
+                            <span *ngIf="selectedMessage">
+                              {{selectedCount}} {{selectedMessage}} / 
+                            </span>
+                            {{this.productRegistrationTotalCount}} {{totalMessage}} total
+                          </div>
+                          <datatable-pager
+                              [pagerLeftArrowIcon]="'datatable-icon-left'"
+                              [pagerRightArrowIcon]="'datatable-icon-right'"
+                              [pagerPreviousIcon]="'datatable-icon-prev'"
+                              [pagerNextIcon]="'datatable-icon-skip'"
+                              [page]="curPage"
+                              [size]="curPageSize2"
+                              [count]="productRegistrationTotalCount"
+                              (change)="onFooterPage1($event)">
+                          </datatable-pager>
+                      </ng-template>
+                    </ngx-datatable-footer>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <!--Product Certification Table-->
+        <tab heading="Product Certification">
+          <div class="row">
+            <div class="col">
+              <div class="card mt-4">
+                <div id="datatable_filter" class="mt-4 ml-4 mr-4">
+                  <div class="row">
+                    <label class="form-control-label">
+                      Search by column:
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <form [formGroup]="CertificationSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="FileNo">
+                            File Number
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="FileNo"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="TAC">
+                            TAC
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="TAC"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="ProductCategory"
+                          >
+                            Product Category
+                          </label>
+                          <select
+                            type="search"
+                            class="form-control form-control-sm"
+                            aria-controls="datatable"
+                            formControlName="ProductCategory"
+                          >
+                            <option value="RADIO">Radio</option>
+                            <option value="TELEPHONY">Telephony</option>
+                            <option value="HYBRID">Hybrid</option>
+                            <option value="" selected class="text-muted">
+                              -- Please Choose --
+                            </option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="TAC">
+                            Type of Product
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="TypeOfProduct"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-4">
+                      <form [formGroup]="CertificationSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="ApproveDate">
+                            Approved Date
+                          </label>
+                          <input
+                            placeholder="Show All"
+                            class="form-control form-control-sm"
+                            formControlName="ApproveDate"
+                            #dp="bsDaterangepicker"
+                             bsDaterangepicker
+                            [(ngModel)]="ApproveDateCert"
+                            [bsConfig]="{
+                              isAnimated: true,
+                              dateInputFormat: 'YYYY-MM-DD',
+                              containerClass: 'theme-dark-blue'
+                            }"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="ExpiryDate">
+                            Expiry Date
+                          </label>
+                          <input
+                            placeholder="Show All"
+                            class="form-control form-control-sm"
+                            formControlName="ExpiryDate"
+                            #dp="bsDaterangepicker"
+                             bsDaterangepicker
+                            [(ngModel)]="ExpiryDateCert"
+                            [bsConfig]="{
+                              isAnimated: true,
+                              dateInputFormat: 'YYYY-MM-DD',
+                              containerClass: 'theme-dark-blue'
+                            }"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="CA">
+                            CA 
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="ca_owner"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-4">
+                      <form [formGroup]="CertificationSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="Model">
+                            Model
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="Model"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="Brand">
+                            Brand
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="Brand"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label class="form-control-label" for="Marketing Name">
+                            Marketing Name
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="MarketingName"
+                          />
+                        </div>
+                       
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col text-right mb-4 ml--4">
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        (click)="filterTableCertication()"
+                      >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card mt-4">
+                <div class="dataTables_wrapper py-4">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                      <div class="dataTables_length" id="datatable_length">
+                        <label>
+                          Show
+                          <select
+                            name="datatable_length"
+                            aria-controls="datatable"
+                            class="form-control form-control-sm"
+                            (change)="entryChange2($event)"
+                          >
+                          <option value="20">20</option>
+                          </select>
+                          records
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col-md-6 text-right ml--4">
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        style="width: 100px"
+                        (click)="confirmCertBulk()"
+                        [disabled]="this.userData !='AD'"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        style="width: 100px"
+                        (click)="openModal(addCertData)"
+                      >
+                        Add File
+                      </button>
+                      <button
+                        class="btn btn-sm btn-secondary"
+                        style="width: 100px"
+                        (click)="confirmExportCert()"
+                        [disabled]="!ExpiryDateCert && !ApproveDateCert"
+                      >
+                        Export
+                      </button>
+                    </div>
+                  </div>
+
+                  <ngx-datatable
+                    class="bootstrap selection-cell"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="'auto'"
+                    [limit]="tableEntries2 != -1 ? tableEntries2 : undefined"
+                    [rows]="productCertificationTable"
+                    (activate)="onActivate2($event)"
+                    [scrollbarH]="true"
+                    [sorts]="[{prop: 'name', dir: 'desc'}]"
+                  >
+                  <ngx-datatable-column [sortable]="false">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                id="customCheck+{{row.Id}}" (change)="checkRowCert(row)"
+                                [(ngModel)]="row.isTick">
+                            <label class="custom-control-label" for="customCheck+{{row.Id}}">
+                            </label>
+                        </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+                    <ngx-datatable-column name="No" [width]="100">
+                      <ng-template
+                        let-rowIndex="rowIndex"
+                        let-row="row"
+                        ngx-datatable-cell-template
+                      >
+                        <strong>{{ rowIndex + 1 }}</strong>
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="180"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      name="FileNo"
+                    >
+                      <ng-template ngx-datatable-header-template let-value="value">
+                        <span>File No.</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template [vertical-align]="top" let-value="value">
+                        {{ row.FileNo }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="180"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="TAC"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>TAC</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.TAC }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      
+                      [width]="200"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="TypeOfProduct"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Type Of Product</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.TypeOfProduct }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="140"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="ProductCategory"
+                    >
+                      <ng-template ngx-datatable-header-template name="ProductCategory">
+                        <span>Product Category</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.ProductCategory }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="250"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="Model"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Model </span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.Model }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="150"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="Brand"
+                      >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Brand</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.Brand }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="180"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="MarketingName"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Marketing Name</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.MarketingName }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="160"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="ApproveDate"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Approved Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.ApproveDate | date: "dd/MM/yyyy" }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      [width]="160"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="ExpiryDate"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Expiry Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.ExpiryDate | date: "dd/MM/yyyy" }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                      [width]="160"
+                      [sortable]="true"
+                      [resizeable]="false"
+                      prop="created_date"
+                    >
+                      <ng-template ngx-datatable-header-template>
+                        <span>Created Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.created_date | date: "dd/MM/yyyy" }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column
+                    [sortable]="true"
+                    [resizeable]="false"
+                    prop="CA_owner">
+                      <ng-template ngx-datatable-header-template>
+                        <span>CA</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.CA_owner }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <!--<ngx-datatable-column>
+                      <ng-template ngx-datatable-header-template>
+                        <span>Action</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a
+                          class="table-action table-action-delete"
+                          tooltip="Delete"
+                          placement="top"
+                          (click)="confirmCert(row)"
+                        >
+                          <i class="fas fa-trash"> </i>
+                        </a>
+                      </ng-template>
+                    </ngx-datatable-column> -->
+                    <ngx-datatable-footer>
+                      <ng-template 
+                        ngx-datatable-footer-template
+                        let-rowCount="rowCount"
+                        let-pageSize="pageSize"
+                        let-selectedCount="selectedCount"
+                        let-curPage="curPage"
+                        let-offset="offset"
+                        let-isVisible="isVisible">
+                          <div class="page-count">
+                            <span *ngIf="selectedMessage">
+                              {{selectedCount}} {{selectedMessage}} / 
+                            </span>
+                            {{this.productCertificationTotalCount}} {{totalMessage}} total
+                          </div>
+                          <datatable-pager
+                              [pagerLeftArrowIcon]="'datatable-icon-left'"
+                              [pagerRightArrowIcon]="'datatable-icon-right'"
+                              [pagerPreviousIcon]="'datatable-icon-prev'"
+                              [pagerNextIcon]="'datatable-icon-skip'"
+                              [page]="curPage"
+                              [size]="curPageSize"
+                              [count]="productCertificationTotalCount"
+                              (change)="onFooterPage2($event)">
+                          </datatable-pager>
+                      </ng-template>
+                    </ngx-datatable-footer>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <!--SLP ID Table-->
+        <tab heading="SLP ID">
+          <div class="row">
+            <div class="col">
+              <div class="card mt-4">
+                <div id="datatable_filter" class="mt-4 ml-4 mr-4">
+                  <div class="row">
+                    <label class="form-control-label">
+                      Search by column:
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <form [formGroup]="SLPSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="SLP_ID">
+                            SLP ID
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="SLP_ID"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="SLPID_owner">
+                            Certificate Holder
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="SLPID_owner"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-4">
+                      <form [formGroup]="SLPSearchForm">
+                        <div class="form-group">
+                          <label class="form-control-label" for="ApproveDate">
+                            Approved Date
+                          </label>
+                          
+                          <input
+                            placeholder="Show All"
+                            class="form-control form-control-sm"
+                            formControlName="ApproveDate"
+                            #dp="bsDaterangepicker"
+                            [(ngModel)]="ApproveDateSLP"
+                            bsDaterangepicker
+                            [bsConfig]="{
+                              isAnimated: true,
+                              dateInputFormat: 'YYYY-MM-DD',
+                              containerClass: 'theme-dark-blue'
+                            }"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="ExpiryDate">
+                            Expiry Date
+                          </label>
+                          <input
+                            placeholder="Show All"
+                            class="form-control form-control-sm"
+                            formControlName="ExpiryDate"
+                            #dp="bsDaterangepicker"
+                            [(ngModel)]="ExpiryDateSLP"
+                             bsDaterangepicker
+                            [bsConfig]="{
+                              isAnimated: true,
+                              dateInputFormat: 'YYYY-MM-DD',
+                              containerClass: 'theme-dark-blue'
+                            }"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-4">
+                      <form [formGroup]="SLPSearchForm">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="principal_certificate"
+                          >
+                            Principal
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="principal_certificate"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="CA">
+                            CA 
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="ca_owner"
+                          />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col text-right mb-4 ml--4">
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        (click)="filterTableSLP()"
+                      >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card mt-4">
+                <div class="dataTables_wrapper py-4">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                  
+                    </div>
+                  </div>
+            
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="dataTables_length" id="datatable_length">
+                        <label>
+                          Show
+                          <select
+                            name="datatable_length"
+                            aria-controls="datatable"
+                            class="form-control form-control-sm"
+                            (change)="entryChange3($event)"
+                          >
+                          <option value="20">20</option>
+                          </select>
+                          records
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4 col-md-6 text-right ml--4">
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        style="width: 100px"
+                        (click)="confirmSLPBulk()"
+                        [disabled]="this.userData !='AD'"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn btn-sm btn-neutral"
+                        style="width: 100px"
+                        (click)="openModal(addSLPIDData)"
+                      >
+                        Add File
+                      </button>
+                      <button
+                        class="btn btn-sm btn-secondary"
+                        style="width: 100px"
+                        [disabled]="!ExpiryDateSLP && !ApproveDateSLP"
+                        (click)="confirmExportSLP()"
+                      >
+                        Export
+                      </button>
+                    </div>
+                  </div>
+
+                  <ngx-datatable
+                    class="bootstrap selection-cell"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [rowHeight]="'auto'"
+                    [limit]="tableEntries3 != -1 ? tableEntries3 : undefined"
+                    [rows]="SLPTable"
+                    (activate)="onActivate3($event)"
+                    [sorts]="[{prop: 'name', dir: 'desc'}]"
+                  >
+                  <ngx-datatable-column [sortable]="false" [width]="80">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input"
+                                id="customCheck+{{row.Id}}" (change)="checkRowSLP(row)"
+                                [(ngModel)]="row.isTick">
+                            <label class="custom-control-label" for="customCheck+{{row.Id}}">
+                            </label>
+                        </div>
+                    </ng-template>
+                  </ngx-datatable-column>
+                    <ngx-datatable-column name="No" [width]="80">
+                      <ng-template
+                        let-rowIndex="rowIndex"
+                        let-row="row"
+                        ngx-datatable-cell-template
+                        vertical-align: top;
+                      >
+                        <strong>{{ rowIndex + 1 }}</strong>
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="SLP_ID">
+                      <ng-template ngx-datatable-header-template>
+                        <span>SLP ID</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.SLP_ID }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="principal_certificate">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Principal</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.principal_certificate }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="SLPID_owner">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Certificate Holder</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.SLPID_owner }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="ApproveDate">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Approved Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.ApproveDate | date: "dd/MM/yyyy" }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="ExpiryDate">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Expiry Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.ExpiryDate | date: "dd/MM/yyyy" }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="created_date">
+                      <ng-template ngx-datatable-header-template>
+                        <span>Created Date</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.created_date | date: "dd/MM/yyyy" }}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column prop="CA_owner">
+                      <ng-template ngx-datatable-header-template>
+                        <span>CA</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.CA_owner }}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <!--<ngx-datatable-column>
+                      <ng-template ngx-datatable-header-template>
+                        <span>Action</span>
+                      </ng-template>
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a
+                          class="table-action table-action-delete"
+                          tooltip="Delete"
+                          placement="top"
+                          (click)="confirmSLP(row)"
+                        >
+                          <i class="fas fa-trash"> </i>
+                        </a>
+                      </ng-template>
+                    </ngx-datatable-column> -->
+                    <ngx-datatable-footer>
+                      <ng-template 
+                        ngx-datatable-footer-template
+                        let-rowCount="rowCount"
+                        let-pageSize="pageSize"
+                        let-selectedCount="selectedCount"
+                        let-curPage="curPage"
+                        let-offset="offset"
+                        let-isVisible="isVisible">
+                          <div class="page-count">
+                            <span *ngIf="selectedMessage">
+                              {{selectedCount}} {{selectedMessage}} / 
+                            </span>
+                            {{this.SLPTotalCount}} {{totalMessage}} total
+                          </div>
+                          <datatable-pager
+                              [pagerLeftArrowIcon]="'datatable-icon-left'"
+                              [pagerRightArrowIcon]="'datatable-icon-right'"
+                              [pagerPreviousIcon]="'datatable-icon-prev'"
+                              [pagerNextIcon]="'datatable-icon-skip'"
+                              [page]="curPage"
+                              [size]="curPageSize"
+                              [count]="SLPTotalCount"
+                              (change)="onFooterPage3($event)">
+                          </datatable-pager>
+                      </ng-template>
+                    </ngx-datatable-footer>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template #addCertData>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Add Product Certification Data
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="addNewDataForm">
+      <div class="form-group">
+        <label class="form-control-label">Upload Excel</label>
+        <input
+          class="form-control"
+          name="excelFile"
+          (change)="onFileChange($event)"
+          type="file"
+        />
+        <a class=" btn btn-vimeo btn-sm btn-icon mt-2" type="button" href="assets/(Example)Export_Table_Certification.xlsx" download="(Example)Export_Table_Certification.xlsx"><span class=" btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span> Example</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="submitFileExcelCert()"
+    >
+      Add
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #addRegisterData>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Add Product Register Data
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="addNewDataForm">
+      <div class="form-group">
+        <label class="form-control-label">Upload Excel</label>
+        <input
+          class="form-control"
+          name="excelFile"
+          (change)="onFileChange($event)"
+          type="file"
+        />
+        <a class=" btn btn-vimeo btn-sm btn-icon mt-2" type="button" href="assets/(Example)Export_Table_Registration.xlsx" download="(Example)Export_Table_Registration.xlsx"><span class=" btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span> Example</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="submitFileExcelRegister()"
+    >
+      Add
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #addSLPIDData>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Add SLPID Data
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="addNewDataForm">
+      <div class="form-group">
+        <label class="form-control-label">Upload Excel</label>
+        <input
+          class="form-control"
+          name="excelFile"
+          (change)="onFileChange($event)"
+          type="file"
+        />
+        <a class=" btn btn-vimeo btn-sm btn-icon mt-2" type="button" href="assets/(Example)Export_Table_SLP_ID.xlsx" download="(Example)Export_Table_SLP_ID.xlsx"><span class=" btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span> Example</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="submitFileExcelSLPID()"
+    >
+      Add
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<!-- <ng-template #exportmodal>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Export Excel
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <label class="form-control-label">
+        Export by column:
+      </label>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <form [formGroup]="RegisterSearchForm">
+          <div class="form-group">
+            <label class="form-control-label" for="TAC">
+              TAC
+            </label>
+            <input
+              class="form-control form-control-sm"
+              placeholder="Show All"
+              type="text"
+              formControlName="TAC"
+              [(ngModel)]="TAC"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="SLPID">
+              SLPID
+            </label>
+            <input
+              class="form-control form-control-sm"
+              placeholder="Show All"
+              type="text"
+              formControlName="SLPID"
+              [(ngModel)]="SLPID"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="col-4">
+        <form [formGroup]="RegisterSearchForm">
+          <div class="form-group">
+            <label class="form-control-label" for="CreatedDate">
+              Created Date
+            </label>
+            
+            <input
+              placeholder="Show All"
+              class="form-control form-control-sm"
+              formControlName="CreatedDate"
+              #dp="bsDaterangepicker"
+              [(ngModel)]="selectedDate"
+              bsDaterangepicker
+              [bsConfig]="{
+                isAnimated: true,
+                dateInputFormat: 'YYYY-MM-DD',
+                containerClass: 'theme-dark-blue'
+              }"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="col-4">
+        <form [formGroup]="RegisterSearchForm">
+          <div class="form-group">
+            <label
+              class="form-control-label"
+              for="Product Registration No."
+            >
+              Product Registration No.
+            </label>
+            <input
+              class="form-control form-control-sm"
+              placeholder="Show All"
+              type="text"
+              formControlName="ProductRegistrationNo"
+              [(ngModel)]="ProdReg"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      [disabled]="!SLPID && !ProdReg && !selectedDate && !TAC"
+      (click)="confirmExport()"
+    >
+      Export
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template> -->
+
+<div class="table" id="tableProductReg" [hidden]="isSummaryTableHidden">
+	<table id="print-section" class="table table-responsive table-flush">
+		<thead>
+			<tr>
+				<th>SLP ID</th>
+				<!-- <th>File No.</th> -->
+				<th>TAC</th>
+				<th>Product Registration No</th>
+				<th>Register Type</th>
+        <th>Serial Number</th>
+        <th>IMEI Number</th>
+        <th>Created Date</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr *ngFor="let row of exportTable">
+				<td>
+					{{ row.SLPID }}  
+				</td>
+				<!-- <td>
+					{{ row.FileNo }}  
+				</td> -->
+				<td>
+					{{ row.TAC }}
+				</td>
+        <td>
+					{{ row.ProductRegistrationNo }}
+				</td>
+				<td>
+					{{row.RegType}}
+				</td>
+        <td>
+					{{row.SerialNo}}
+				</td>
+        <td>
+					{{row.IMEI}}
+				</td>
+        <td>{{row.created_date}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="table" id="excel-table-cert" [hidden]="isSummaryTableHidden">
+	<table id="print-section2" class="table table-responsive table-flush">
+		<thead>
+			<tr>
+				<th>TAC</th>
+				<th>File No.</th>
+				<th>TypeOfProduct</th>
+				<th>Model</th>
+				<th>Brand</th>
+        <th>MarketingName</th>
+        <th>ApproveDate</th>
+        <th>ExpiryDate</th>
+        <th>ProductCategory</th>
+        <th>ROCROB</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr *ngFor="let row of exportTable">
+				<td>
+					{{ row.TAC }}  
+				</td>
+				<td>
+					{{ row.FileNo }}  
+				</td>
+				<td>
+					{{ row.TypeOfProduct }}
+				</td>
+        <td>
+					{{ row.Model }}
+				</td>
+				<td>
+					{{row.Brand}}
+				</td>
+        <td>
+					{{row.MarketingName}}
+				</td>
+        <td>
+					{{row.ApproveDate}}
+				</td>
+        <td>
+					{{row.ExpiryDate}}
+				</td>
+        <td>
+					{{row.ProductCategory}}
+				</td>
+        <td>
+					{{row.ROCROB}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="table" id="excel_table_SLP" [hidden]="isSummaryTableHidden" #excel_table_SLP>
+	<table id="print-section3" class="table table-responsive table-flush">
+		<thead>
+			<tr>
+				<th>SLP_ID</th>
+				<th>SLPID_owner</th>
+				<th>principal_certificate</th>
+				<th>ExpiryDate</th>
+				<th>ApproveDate</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr *ngFor="let row of exportTable">
+				<td>
+					{{ row.SLP_ID }}  
+				</td>
+				<td>
+					{{ row.SLPID_owner }}  
+				</td>
+				<td>
+					{{ row.principal_certificate }}
+				</td>
+        <td>
+					{{ row.ExpiryDate }}
+				</td>
+				<td>
+					{{ row.ApproveDate }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

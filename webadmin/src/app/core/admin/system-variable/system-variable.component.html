@@ -1,0 +1,398 @@
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-8 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome,</h6>
+          <br />
+          <h6 class="h3 text-white d-inline-block mb-0">
+            "Registration of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">System Variable</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <!--<div class="row">
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="ml-2">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total System Usage
+              </h5>
+            </div>
+            <div class="chart mx-auto">
+              <circle-progress
+                [percent]="55"
+                [radius]="85"
+                [space]="-20"
+                [outerStrokeGradient]="false"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="20"
+                [outerStrokeColor]="'#83b5d9'"
+                [innerStrokeColor]="'#e7e8ea'"
+                [animation]="true"
+                [animationDuration]="300"
+                [animateTitle]="true"
+                [subtitle]="'System Usage'"
+              ></circle-progress>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Portal Performance
+              </h5>
+            </div>
+            <div class="chart mx-auto">
+              <circle-progress
+                [percent]="90"
+                [radius]="85"
+                [space]="-20"
+                [outerStrokeGradient]="false"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="20"
+                [outerStrokeColor]="'#83b5d9'"
+                [innerStrokeColor]="'#e7e8ea'"
+                [animation]="true"
+                [animationDuration]="300"
+                [animateTitle]="true"
+                [subtitle]="'Performance'"
+              ></circle-progress>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Bounce Rate
+              </h5>
+            </div>
+            <div class="chart">
+              <div class="amchart" id="bounceVar"></div>
+            </div>
+          </div>
+
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="row py-4">
+          <div class="col-sm-12 col-md-6">
+            <h3 class="ml-4">Variable Editor</h3>
+            <h6 class="ml-4">To enable or disable every access of data</h6>
+          </div>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row"></div>
+
+          <ngx-datatable
+            class="mt--3 bootstrap selection-cell"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="tableEntries != -1 ? tableEntries : undefined"
+            [rows]="variableTable"
+          >
+            <ngx-datatable-column>
+              <ng-template ngx-datatable-header-template>
+                <span>Item</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.variable_name }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column>
+              <ng-template ngx-datatable-header-template>
+                <span>Last Modified</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.modified_date | date: "dd/MM/yyyy hh:mm a" }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column>
+              <ng-template ngx-datatable-header-template>
+                <span>Status</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <span
+                  *ngIf="row.is_enable == true"
+                  class="badge badge-pill badge-success"
+                  >Enable</span
+                >
+                <span
+                  *ngIf="row.is_enable == false"
+                  class="badge badge-pill badge-warning"
+                  >Disable</span
+                >
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column>
+              <ng-template ngx-datatable-header-template>
+                <span>Action</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <a
+                  class="table-action"
+                  tooltip="Enable/Disable"
+                  placement="top"
+                  (click)="openModal(editVariable, 'edit', row)"
+                >
+                  <i class="ni ni-settings-gear-65"> </i>
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+        <!--<div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h3 class="ml-4">Variable Editor</h3>
+              <h6 class="ml-4">To enable or disable every access of data</h6>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table
+              class="table align-items-center table-flush"
+              style="width: 100%"
+            >
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Item</th>
+                  <th>Last Modified Date</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let row of variableTable">
+                  <td style="width: 25%">{{ row.variable_name }}</td>
+                  <td style="width: 25%">{{ row.modified_date }}</td>
+                  <td class="text-center" style="width: 25%">
+                    <span
+                      *ngIf="{{row.is_enable}} == 'true'"
+                      class="badge badge-pill badge-success"
+                      >Enable</span
+                    >
+                    <span
+                      *ngIf="row.is_enable == 'false'"
+                      class="badge badge-pill badge-warning"
+                      >Disable</span
+                    >
+                  </td>
+                  <td style="width: 25%" class="text-center">
+                    <label class="custom-toggle custom-toggle-success mr-1">
+                      <input type="checkbox" />
+                      <span
+                        class="custom-toggle-slider rounded-circle"
+                        data-label-off="No"
+                        data-label-on="Yes"
+                      >
+                      </span>
+                    </label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-12 col-5 text-right">
+            <button class="btn btn-facebook" (click)="editMessage()">
+              Save
+            </button>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="row">
+    <div class="col">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h3 class="ml-4">Variable Editor</h3>
+            <h6 class="ml-4">To enable or disable every access of data</h6>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="variableForm">
+            <div class="row">
+              <div class="col-3">
+                <div class="form-group text-center *ng">
+                  <label class="form-control-label">Brand/Information</label>
+                  <br />
+                  <label class="custom-toggle custom-toggle-success mr-1">
+                    <input type="checkbox" formControlName="active" />
+                    <span
+                      class="custom-toggle-slider rounded-circle"
+                      data-label-off="No"
+                      data-label-on="Yes"
+                    >
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group text-center">
+                  <label class="form-control-label">IMEI</label>
+                  <br />
+                  <label class="custom-toggle custom-toggle-success mr-1">
+                    <input type="checkbox" />
+                    <span
+                      class="custom-toggle-slider rounded-circle"
+                      data-label-off="No"
+                      data-label-on="Yes"
+                    >
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group text-center">
+                  <label class="form-control-label">Serial Number</label>
+                  <br />
+                  <label class="custom-toggle custom-toggle-success mr-1">
+                    <input type="checkbox" />
+                    <span
+                      class="custom-toggle-slider rounded-circle"
+                      data-label-off="No"
+                      data-label-on="Yes"
+                    >
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group text-center">
+                  <label class="form-control-label">Self Labelling ID</label>
+                  <br />
+                  <label class="custom-toggle custom-toggle-success mr-1">
+                    <input type="checkbox" />
+                    <span
+                      class="custom-toggle-slider rounded-circle"
+                      data-label-off="No"
+                      data-label-on="Yes"
+                    >
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>-->
+</div>
+
+<ng-template #editVariable>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Enable/Disable Portal Search
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editVariableForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Name</label>
+            <input class="form-control" formControlName="variable_name" disabled="true"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Enable/Disable</label><br>
+            <label class="custom-toggle custom-toggle-success">
+              <input type="checkbox" formControlName="is_enable"/>
+              <span
+                class="custom-toggle-slider rounded-circle"
+                data-label-off="No"
+                data-label-on="Yes"
+              >
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="update()">
+      Save
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

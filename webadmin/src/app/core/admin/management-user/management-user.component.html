@@ -1,0 +1,387 @@
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-8 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome</h6>
+          <br />
+          <h6 class="h3 text-white text-uppercase d-inline-block mb-0">
+            "Register of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">User Configuration</h6>
+        </div>
+        <div class="col-lg-12 col-5 text-right">
+          <a class="btn btn-sm btn-info" (click)="openModal2(createUser)"> Assign User </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <!--<div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-secondary">
+          <h3 class="m-0">Assign User</h3>
+        </div>
+        <div class="card-body">
+          <div class="row m-0">
+            <input class="mr-2" type="checkbox" />
+            <h5>Active Directory</h5>
+          </div>
+          <div class="row ml--5">
+            <div class="col-3 col-md-3 ml-4">
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Division</option>
+                <option>Division 2</option>
+                <option>Division 3</option>
+                <option>Division 4</option>
+                <option>Division 5</option>
+              </select>
+            </div>
+            <div class="col-3 col-md-3">
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>User</option>
+                <option>Ali</option>
+                <option>Amran</option>
+                <option>Amin</option>
+                <option>Arif</option>
+              </select>
+            </div>
+            <div class="col-3 col-md-3 text-left">
+              <button class="btn btn-info" (click)="openModal(createUser)">
+                Assign
+              </button>
+              <button class="btn btn-info" (click)="get_AD_list()">
+                AD get
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-secondary">
+          <h3 class="m-0">List of Registered User</h3>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="datatable_length">
+                <label>
+                  Show
+                  <select
+                    name="datatable_length"
+                    aria-controls="datatable"
+                    class="form-control form-control-sm"
+                    (change)="entryChange($event)"
+                  >
+                    <option value="10">5</option>
+                    <option value="25">10</option>
+                    <option value="50">15</option>
+                    <option value="-1">All</option>
+                  </select>
+                  records
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+        class="bootstrap selection-cell"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="tableEntries != -1 ? tableEntries : undefined"
+        [rows]="infoTable"
+        (activate)="onActivate($event)"
+        [sorts]="[{ prop: 'email', dir: 'asc' }]"
+      >
+        <ngx-datatable-column [sortable]="false" name="No">
+          <ng-template
+            let-rowIndex="rowIndex"
+            let-row="row"
+            ngx-datatable-cell-template
+          >
+            <strong>{{ rowIndex + 1 }}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="username">
+          <ng-template ngx-datatable-header-template>
+            <span>Name</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.username }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="name">
+          <ng-template ngx-datatable-header-template>
+            <span>Email</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.name }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="is_active">
+          <ng-template ngx-datatable-header-template>
+            <span>Active</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <span
+                  *ngIf="row.is_active == true"
+                  class="badge badge-pill badge-success"
+                  >Enable</span
+                >
+                <span
+                  *ngIf="row.is_active == false"
+                  class="badge badge-pill badge-warning"
+                  >Disable</span
+                >
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="user_type">
+          <ng-template ngx-datatable-header-template>
+            <span>Roles</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <span
+                  *ngIf="row.user_type == 'US' "
+                  >Admin</span
+                >
+                <span
+                  *ngIf="row.user_type == 'AD'"
+                  >Super Admin</span
+                >
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- <span *ngIf="this.userData == 'AD' "> -->
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Action</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <button
+              class= "btn"
+              tooltip="Edit user info"
+              placement="top"
+              (click)="openModal(editUser, 'update', row)"
+              [disabled]="this.userData == 'US'"
+            >
+              <i class="fas fa-user-edit"> </i>
+          </button>
+
+            <!-- <a
+              class="table-action table-action-delete"
+              tooltip="Delete email"
+              placement="top"
+              (click)="confirm(row)"
+            >
+              <i class="fas fa-trash"> </i>
+            </a> -->
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- </span> -->
+      </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #createUser>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      User Information
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <form [formGroup]="newUserForm">
+          <div class="form-group">
+            <label class="form-control-label" for="name">
+              Name
+            </label>
+
+            <input
+              class="form-control"
+              id="username"
+              type="text"
+              formControlName="username"
+            />
+
+            <label class="form-control-label mt-2" for="Email">
+              Email
+            </label>
+
+            <input
+              class="form-control"
+              id="example2cols1Input"
+              formControlName="name"
+              type="text"
+            />
+
+            <label class="form-control-label mt-2" for="Roles">
+              Roles
+            </label>
+
+            <select
+              type="search"
+              class="form-control"
+              aria-controls="datatable"
+              formControlName="user_type">
+              <option *ngIf="this.userData === 'AD' " value="AD">Super Admin</option>
+              <option value="US">Admin</option>
+              <option value="" selected class="text-muted"> -- Please Choose -- </option>
+            </select><br>
+            <label class="form-control-label">Enable/Disable</label><br>
+            <label class="custom-toggle custom-toggle-success">
+              <input type="checkbox" formControlName="is_active"/>
+              <span
+                class="custom-toggle-slider rounded-circle"
+                data-label-off="No"
+                data-label-on="Yes"
+              >
+              </span>
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="AssignUser()"
+    >
+      Confirm
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #editUser>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      User Information
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <form [formGroup]="editUserForm">
+          <div class="form-group">
+            <label class="form-control-label" for="name">
+              Name
+            </label>
+
+            <input
+              class="form-control"
+              id="username"
+              type="text"
+              formControlName="username"
+            />
+
+            <label class="form-control-label mt-2" for="Email">
+              Email
+            </label>
+
+            <input
+              class="form-control"
+              id="example2cols1Input"
+              formControlName="name"
+              type="text"
+            />
+
+            <label class="form-control-label mt-2" for="Roles">
+              Roles
+            </label>
+
+            <select
+              type="search"
+              class="form-control"
+              aria-controls="datatable"
+              formControlName="user_type">
+              <option *ngIf="this.userData === 'AD' " value="AD">Super Admin</option>
+              <option value="US">Admin</option>
+              <option value="" selected class="text-muted"> -- Please Choose -- </option>
+            </select><br>
+            <label class="form-control-label">Enable/Disable</label><br>
+            <label class="custom-toggle custom-toggle-success">
+              <input type="checkbox" formControlName="is_active"/>
+              <span
+                class="custom-toggle-slider rounded-circle"
+                data-label-off="No"
+                data-label-on="Yes"
+              >
+              </span>
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="update()"
+      [disabled] = "this.userData === 'US'" 
+    >
+      Confirm
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

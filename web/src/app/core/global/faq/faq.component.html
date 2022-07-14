@@ -1,0 +1,205 @@
+<ngx-loading-bar></ngx-loading-bar>
+<section class="section section-sm section-shaped pb-250">
+    <!-- Circles background -->
+    <div class="shape shape-style-1 shape-default alpha-4">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container py-lg-md d-flex">
+      <div class="col px-0 mt-5">
+        <div class="row">
+          <div class="col-lg-12">
+            <h4 class="display-3 text-white text-center">
+              REGISTER OF CERTIFIED COMMUNICATIONS EQUIPMENT
+              <span><b>(RECCE)</b></span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SVG separator -->
+    <div class="separator separator-bottom separator-skew">
+      <svg
+        x="0"
+        y="0"
+        viewBox="0 0 2560 100"
+        preserveAspectRatio="none"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polygon class="fill-secondary" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="row mt--250">
+      <div class="container">
+        <div class="row justify-content-center mt--2">
+          <div class="col">
+            <div class="card">
+              <div class="card card-header bg-secondary card-profile shadow">
+                <h2 class="text-center mb-4">Frequently Asked Question(s)</h2>
+                <br />
+                <accordion [isAnimated]="true" [closeOthers]="true">
+                  <accordion-group class="mt--4" *ngFor="let option of infoTable" [heading]="option.category">
+                    <p innerHtml="{{ option.content }}"></p>
+                  </accordion-group>
+                </accordion>
+
+                <!--<accordion [isAnimated]="true" [closeOthers]="true">
+                  <accordion-group [isOpen]="isFirstOpen" heading="General">
+                  <textarea class="form-control">
+                    <h4 class="text-default">
+                        What is meant by communications equipment?
+                    </h4>
+                    <p>
+                        Customer equipment are any equipment used on the customer
+                        side of a network service and all types of wireless
+                        devices. Examples are fixed-line or cellular phones, fax
+                        machine, modem, wireless router and gateway, optical
+                        transceiver, satellite receiver, mobile radio or
+                        walkie-talkie, smart and digital television, and any
+                        equipment or device using wireless technologies such as
+                        laptop, tablet, camera, watches, drone, baby monitor, CCTV
+                        and others.
+                    </p>
+                    <h4 class="text-default">
+                        What is meant by certified communications equipment?
+                    </h4>
+                    <p>
+                        Certified communications equipment refers to equipment
+                        which has been confirmed as having complied with the
+                        specified standards, technical specifications, technical
+                        checklist and/or technical declaration pursuant to the
+                        Communications and Multimedia (Technical Standards)
+                        Regulations 2000.
+                    </p>
+                  </textarea>
+                  </accordion-group>
+                  <accordion-group class="mt--4"  heading="IMEI">
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by IMEI number?
+                      </h4>
+                      <p>
+                        IMEI (International Mobile Equipment Identity) is a unique number to identify GSM, WCDMA, and iDEN mobile phones, as well as some satellite phones. Mostly phone have one IMEI number, but in dual SIM phones are two.
+                      </p>
+                    </div>
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by certified communications equipment?
+                      </h4>
+                      <p>
+                        Certified communications equipment refers to equipment
+                        which has been confirmed as having complied with the
+                        specified standards, technical specifications, technical
+                        checklist and/or technical declaration pursuant to the
+                        Communications and Multimedia (Technical Standards)
+                        Regulations 2000.
+                      </p>
+                    </div>
+                  </accordion-group>
+                  <accordion-group class="mt--4"  heading="Serial Number">
+                    <p>Some content</p>
+                  </accordion-group>
+                  <accordion-group class="mt--4"  heading="Self-Label">
+                    <p>Some content</p>
+                  </accordion-group>
+                </accordion>
+                <!--<div class="form-group">
+                  <label class="form-control-label">Choose by Categories</label>
+                  <select
+                    class="form-control"
+                    (change)="dropdownFAQ($event.target.value)"
+                    [(ngModel)]="value" [ngModelOptions]="{standalone:true}"
+                  >
+                    <option selected hidden>Please select</option>
+                    <option *ngFor="let option of infoTable" [value]="option.category">
+                      {{ option.category }}
+                    </option>
+                  </select>
+                </div>
+                <div class="card-body mt--4 mb--4" *ngIf="value==='General'">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by communications equipment?
+                      </h4>
+                      <p>
+                        Customer equipment are any equipment used on the customer
+                        side of a network service and all types of wireless
+                        devices. Examples are fixed-line or cellular phones, fax
+                        machine, modem, wireless router and gateway, optical
+                        transceiver, satellite receiver, mobile radio or
+                        walkie-talkie, smart and digital television, and any
+                        equipment or device using wireless technologies such as
+                        laptop, tablet, camera, watches, drone, baby monitor, CCTV
+                        and others.
+                      </p>
+                    </div>
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by certified communications equipment?
+                      </h4>
+                      <p>
+                        Certified communications equipment refers to equipment
+                        which has been confirmed as having complied with the
+                        specified standards, technical specifications, technical
+                        checklist and/or technical declaration pursuant to the
+                        Communications and Multimedia (Technical Standards)
+                        Regulations 2000.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body mt--4 mb--4" *ngIf="value==='IMEI'">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by IMEI number?
+                      </h4>
+                      <p>
+                        IMEI (International Mobile Equipment Identity) is a unique number to identify GSM, WCDMA, and iDEN mobile phones, as well as some satellite phones. Mostly phone have one IMEI number, but in dual SIM phones are two.
+                      </p>
+                    </div>
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by certified communications equipment?
+                      </h4>
+                      <p>
+                        Certified communications equipment refers to equipment
+                        which has been confirmed as having complied with the
+                        specified standards, technical specifications, technical
+                        checklist and/or technical declaration pursuant to the
+                        Communications and Multimedia (Technical Standards)
+                        Regulations 2000.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body mt--4 mb--4" *ngIf="value==='Serial Number'">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4 class="text-default">
+                        What is meant by Serial Number?
+                      </h4>
+                      <p>
+                        A serial number is a unique identifier assigned incrementally or sequentially to an item, to uniquely identify it. Serial numbers need not be strictly numerical. They may contain letters and other typographical symbol, or may consist entirely of a character string.
+                      </p>
+                    </div>
+                  </div>
+                </div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

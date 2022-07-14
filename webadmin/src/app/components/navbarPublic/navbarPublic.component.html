@@ -1,0 +1,39 @@
+<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
+  <div class="container">
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/global/public']">
+      <img src="assets/img/logo/MCMC New Logo_Colour.png" style="height:40px">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="navbar-collapse collapse" id="navbar_global" >
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a [routerLink]="['/global/public']">
+                <img src="assets/img/logo/MCMC New Logo_Colour.png" style="height:40px">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 align-items-right">
+          <div class="text-center">
+            <button [routerLink]="['/global/public']" class="btn text-grey">MENU</button>
+            <button [routerLink]="['/global/productInfo']" class=" btn text-grey">PRODUCT INFO</button>
+            <button [routerLink]="['/global/emei']" class=" btn text-grey">IMEI NUMBER</button>
+            <button [routerLink]="['/global/serial']" class="btn text-grey">SERIAL NUMBER</button>
+            <button [routerLink]="['/global/label']" class=" btn text-grey">SELF LABELLING ID</button>
+            <button [routerLink]="['/global/faq']" class=" btn text-grey">FAQ</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</nav>

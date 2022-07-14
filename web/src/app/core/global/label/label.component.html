@@ -1,0 +1,319 @@
+<ngx-loading-bar></ngx-loading-bar>
+<section class="section section-sm section-shaped pb-250">
+  <!-- Circles background -->
+  <div class="shape shape-style-1 shape-default alpha-4">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="container py-lg-md d-flex">
+    <div class="col px-0 mt-5">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="display-3 text-white text-center">
+            REGISTER OF CERTIFIED COMMUNICATIONS EQUIPMENT
+            <span><b>(RECCE)</b></span>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SVG separator -->
+  <div class="separator separator-bottom separator-skew">
+    <svg
+      x="0"
+      y="0"
+      viewBox="0 0 2560 100"
+      preserveAspectRatio="none"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon class="fill-secondary" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
+
+<span *ngIf="variableTable.is_enable == true">
+  <section class="section">
+    <div class="container">
+      <div class="main-content d-flex align-items-center">
+        <div class="container">
+          <div
+            class="row text-center card bg-secondary card-profile shadow mt--250"
+          >
+            <form [formGroup]="searchLABELForm">
+              <h3 class="mt-4 text-center">Self Labeling ID Enquiry</h3>
+              <br />
+              <div class="form-group row">
+                <label class="h3 text-right col-md-3" for="imei"
+                  ><span class="required">*</span>SLP ID</label
+                >
+                <div class="col-md-7">
+                  <input
+                    class="ml-2 form-control"
+                    type="text"
+                    id="label"
+                    formControlName="LABEL"
+                    style="text-transform: uppercase"
+                    name="label"
+                    placeholder="EG:HID1000073"
+                    [(ngModel)]="label"
+                    (focus)="focusLabel = true"
+                    (blur)="focusLabel = false"
+                    maxLength="12"
+                  />
+                  <ng-container *ngFor="let message of LabelMessages.LABEL">
+                    <div
+                      *ngIf="
+                        searchLABELForm.get('LABEL').hasError(message.type) &&
+                        (searchLABELForm.get('LABEL').dirty ||
+                          searchLABELForm.get('LABEL').touched)
+                      "
+                    >
+                      <p class="error-message">
+                        <span
+                          ><b>{{ message.message }}</b></span
+                        >
+                      </p>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="d-flex justify-content-center">
+                  <ngx-recaptcha2
+                    #captchaElem
+                    [siteKey]="siteKey"
+                    (reset)="handleReset()"
+                    (expire)="handleExpire()"
+                    (load)="handleLoad()"
+                    (success)="handleSuccess($event)"
+                    [useGlobalDomain]="false"
+                    [size]="size"
+                    [hl]="lang"
+                    [theme]="theme"
+                    [type]="type"
+                    formControlName="recaptcha"
+                    class="text-center"
+                  >
+                  </ngx-recaptcha2>
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  class="btn btn-lg btn-neutral ml--1"
+                  (click)="productGeneration()"
+                  [disabled]="!searchLABELForm.valid"
+                  style="width: 100px"
+                >
+                  Search
+                </button>
+                <button
+                  class="btn btn-lg btn-neutral mr--1"
+                  type="reset"
+                  style="width: 100px"
+                >
+                  Reset
+                </button>
+                <br /><br />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</span>
+<span *ngIf="variableTable.is_enable == false">
+  <section class="section">
+    <div class="container">
+      <div class="main-content d-flex align-items-center">
+        <div class="container">
+          <div
+            class="row text-center card bg-secondary card-profile shadow mt--250"
+          >
+            <form [formGroup]="searchLABELForm">
+              <h3 class="mt-4 text-center">Self Labeling ID Enquiry</h3>
+              <br />
+              <div class="form-group row">
+                <label class="h3 text-right col-md-3" for="imei"
+                  ><span class="required">*</span>SLP ID</label
+                >
+                <div class="col-md-7">
+                  <input
+                    class="ml-2 form-control"
+                    type="text"
+                    id="label"
+                    formControlName="LABEL"
+                    style="text-transform: uppercase"
+                    name="label"
+                    disabled="yes"
+                    placeholder="EG:HID1000073"
+                    [(ngModel)]="label"
+                    (focus)="focusLabel = true"
+                    (blur)="focusLabel = false"
+                  />
+                  <ng-container *ngFor="let message of LabelMessages.LABEL">
+                    <div
+                      *ngIf="
+                        searchLABELForm.get('LABEL').hasError(message.type) &&
+                        (searchLABELForm.get('LABEL').dirty ||
+                          searchLABELForm.get('LABEL').touched)
+                      "
+                    >
+                      <p class="error-message">
+                        <span
+                          ><b>{{ message.message }}</b></span
+                        >
+                      </p>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="d-flex justify-content-center">
+                  <ngx-recaptcha2
+                    #captchaElem
+                    [siteKey]="siteKey"
+                    (reset)="handleReset()"
+                    (expire)="handleExpire()"
+                    (load)="handleLoad()"
+                    (success)="handleSuccess($event)"
+                    [useGlobalDomain]="false"
+                    [size]="size"
+                    [hl]="lang"
+                    [theme]="theme"
+                    [type]="type"
+                    formControlName="recaptcha"
+                    class="text-center"
+                  >
+                  </ngx-recaptcha2>
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  class="btn btn-lg btn-neutral ml--1"
+                  (click)="productGeneration()"
+                  [disabled]="!searchLABELForm.valid"
+                  style="width: 100px"
+                >
+                  Search
+                </button>
+                <button
+                  class="btn btn-lg btn-neutral mr--1"
+                  type="reset"
+                  style="width: 100px"
+                >
+                  Reset
+                </button>
+                <br /><br />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</span>
+
+<ng-template #showResult>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Self Labeling ID
+    </h6>
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="dataTables_wrapper">
+      <ngx-datatable
+        class="bootstrap selection-cell"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="tableEntries != -1 ? tableEntries : undefined"
+        [rows]="infoTable"
+        (activate)="onActivate($event)"
+      >
+        <ngx-datatable-column name="No">
+          <ng-template
+            let-rowIndex="rowIndex"
+            let-row="row"
+            ngx-datatable-cell-template
+          >
+            <strong>{{ rowIndex + 1 }}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>SLP ID</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.SLP_ID }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>SLP ID Owner</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.SLPID_owner }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Approved Date</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.ApproveDate | date: "dd/MM/yyyy" }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Expiry Date</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.ExpiryDate | date: "dd/MM/yyyy" }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Principal / Cert Holder</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.principal_certificate }}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

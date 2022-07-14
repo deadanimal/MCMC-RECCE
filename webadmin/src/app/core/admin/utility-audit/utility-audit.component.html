@@ -1,0 +1,495 @@
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome,</h6>
+          <br />
+          <h6 class="h3 text-white text-uppercase d-inline-block mb-0">
+            "Register of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">Audit Trails</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total Visitors
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.VisitorGetTable.length }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-red
+                  text-white
+                  rounded-circle
+                  shadow
+                "
+              >
+                <i class="ni ni-active-40"> </i>
+              </div>
+            </div>
+          </div>
+          <!--mt-3-->
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total Data
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0"> {{ this.TACData | number }} </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-orange
+                  text-white
+                  rounded-circle
+                  shadow
+                "
+              >
+                <i class="ni ni-chart-pie-35"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                IMEI Number
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.IMEIData | number }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-green
+                  text-white
+                  rounded-circle
+                  shadow
+                "
+              >
+                <i class="ni ni-money-coins"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Serial Number
+              </h5>
+
+              <span class="h2 font-weight-bold mb-0">
+                {{ this.serialData | number }}
+              </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="
+                  icon icon-shape
+                  bg-gradient-info
+                  text-white
+                  rounded-circle
+                  shadow
+                "
+              >
+                <i class="ni ni-chart-bar-32"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 mb-0 text-sm">
+            <!--<span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+
+            <span class="text-nowrap"> Since last month </span>-->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card mt-4">
+        <div id="datatable_filter" class="mt-4 ml-4 mr-4">
+          <div class="row">
+            <label class="form-control-label"> Search by column: </label>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <form [formGroup]="dataSearchForm">
+                <div class="form-group">
+                  <label class="form-control-label" for="Action">
+                    Action
+                  </label>
+                  <select
+                    type="search"
+                    class="form-control form-control-sm"
+                    aria-controls="datatable"
+                    formControlName="Action"
+                  >
+                    <option value="++">Log In</option>
+                    <option value="--">Log Out</option>
+                    <option value="+">Post</option>
+                    <option value="~">Update</option>
+                    <option value="-">Delete</option>
+                    <option value="" selected class="text-muted">
+                      -- Please Choose --
+                    </option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="col-4">
+              <form [formGroup]="dataSearchForm">
+                <div class="form-group">
+                  <label class="form-control-label" for="history_date">
+                    Date
+                  </label>
+                  <input
+                    placeholder="Show All"
+                    class="form-control form-control-sm"
+                    formControlName="history_date"
+                    #dp="bsDaterangepicker"
+                    bsDaterangepicker
+                    [(ngModel)]="selectedDate"
+                    [bsConfig]="{
+                      isAnimated: true,
+                      dateInputFormat: 'yyyy-MM-dd',
+                      containerClass: 'theme-dark-blue'
+                    }"
+                  />
+                </div>
+              </form>
+            </div>
+            <!--<div class="col-4">
+                      <form [formGroup]="RegisterSearchForm">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="Product Registration No."
+                          >
+                            Product Registration No.
+                          </label>
+                          <input
+                            class="form-control form-control-sm"
+                            id="example2cols1Input"
+                            placeholder="Show All"
+                            type="text"
+                            formControlName="ProductRegistrationNo"
+                          />
+                        </div>
+                      </form>
+                    </div>-->
+          </div>
+          <div class="row">
+            <div class="col text-right mb-4 ml--4">
+              <button class="btn btn-sm btn-neutral" (click)="searchFunction()">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!--<div class="col-lg-3">
+      <div class="card bg-gradient-default">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0 text-white">
+                Total traffic
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0 text-white"> 350,897 </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-white text-dark rounded-circle shadow"
+              >
+                <i class="ni ni-active-40"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-3 mb-0 text-sm">
+          </p>
+        </div>
+      </div>
+
+      <div class="card bg-gradient-primary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0 text-white">
+                New users
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0 text-white"> 2,356 </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-white text-dark rounded-circle shadow"
+              >
+                <i class="ni ni-atom"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-3 mb-0 text-sm">
+          </p>
+        </div>
+      </div>
+
+      <div class="card bg-gradient-danger">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6 class="card-title text-uppercase text-muted mb-0 text-white">
+                Performance
+              </h6>
+
+              <span class="h2 font-weight-bold mb-0 text-white"> 49,65% </span>
+            </div>
+
+            <div class="col-auto">
+              <div
+                class="icon icon-shape bg-white text-dark rounded-circle shadow"
+              >
+                <i class="ni ni-spaceship"> </i>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-3 mb-0 text-sm">
+          </p>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="h3 mb-0">Audit Trails</h5>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="datatable_length">
+                <label>
+                  Show
+                  <select
+                    name="datatable_length"
+                    aria-controls="datatable"
+                    class="form-control form-control-sm"
+                    (change)="entriesChange($event)"
+                  >
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="-1">All</option>
+                  </select>
+                  records
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+            class="bootstrap selection-cell"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="tableEntries != -1 ? tableEntries : undefined"
+            [rows]="array"
+            (activate)="onActivate($event)"
+            [sorts]="[{ prop: 'date', dir: 'desc' }]"
+          >
+            <ngx-datatable-column [sortable]="false" name="No">
+              <ng-template
+                let-rowIndex="rowIndex"
+                let-row="row"
+                ngx-datatable-cell-template
+              >
+                <strong>{{ rowIndex + 1 }}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="user">
+              <ng-template ngx-datatable-header-template>
+                <span>User</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <b *ngIf="row.history_user != null">{{ row.history_user?.username }}</b>
+                <b *ngIf="row.history_user == null">{{ row.username }}</b>
+                <b *ngIf="row.history_user == ''">System</b>
+                <b *ngIf="row.history_user == 'b8589355-27b2-4771-b2a0-01c0280a9982'">Admin</b>
+                <b *ngIf="row.history_user == '5664b430-6cce-4f30-9569-319d5eb6f7df'">Azira</b>
+                <b *ngIf="row.history_user == 'f716b45c-015f-4099-a01b-1f1fbd8370f5'">Nordziana</b>
+                <b *ngIf="row.history_user == '25536505-2a68-481b-9c42-820b04f61391'">Nadia</b>
+                <b *ngIf="row.history_user == '16d60097-1b08-4081-9922-44139dd2a639'">Faris</b>
+                <b *ngIf="row.history_user == '612f5531-5c01-4d89-8b8c-16324a92d277'">Karim</b>
+                <b *ngIf="row.history_user == 'ae1f4c0e-f18a-4ea4-854a-bf5440665026'">Amir</b>
+                <b *ngIf="row.history_user == '2a494bd7-78df-4502-8811-1d60271073d6'">Haffiz</b>
+                <b *ngIf="row.history_user == 'c099428e-3971-401e-a60e-539af12317f0'">Zailah</b>
+                <b *ngIf="row.history_user == '7c1e22ff-7a66-4d4a-ba88-cabc209303c5'">Zulhelmi</b>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="date" name="date">
+              <ng-template ngx-datatable-header-template>
+                <span>Date</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.history_date | date: "dd/MM/yyyy hh:mm a" }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="action">
+              <ng-template ngx-datatable-header-template>
+                <span>Action</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <span
+                  *ngIf="row.history_type == '+'"
+                  class="badge badge-pill badge-default"
+                  >POST</span
+                >
+                <span
+                  *ngIf="row.history_type == '++'"
+                  class="badge badge-pill badge-success"
+                  >LOG IN</span
+                >
+                <span
+                  *ngIf="row.history_type == '--'"
+                  class="badge badge-pill badge-danger"
+                  >LOG OUT</span
+                >
+                <span
+                  *ngIf="row.history_type == '~'"
+                  class="badge badge-pill badge-info"
+                  >UPDATE</span
+                >
+                <span
+                  *ngIf="row.history_type == '-'"
+                  class="badge badge-pill badge-warning"
+                  >DELETE</span
+                >
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="200">
+              <ng-template ngx-datatable-header-template>
+                <span>Description</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <b *ngIf="row.history_user != null">{{ row.history_user?.username }}</b>
+                <b *ngIf="row.history_user == 'b8589355-27b2-4771-b2a0-01c0280a9982'">Admin</b>
+                <b *ngIf="row.history_user == '5664b430-6cce-4f30-9569-319d5eb6f7df'">Azira</b>
+                <b *ngIf="row.history_user == 'f716b45c-015f-4099-a01b-1f1fbd8370f5'">Nordziana</b>
+                <b *ngIf="row.history_user == '25536505-2a68-481b-9c42-820b04f61391'">Nadia</b>
+                <b *ngIf="row.history_user == ''">System</b>
+                <b *ngIf="row.history_user == null">{{ row.username }}</b> has
+                <b *ngIf="row.history_type == '+'">create new</b
+                ><b *ngIf="row.history_type == '++'"
+                  >succesfully log in into the system</b
+                ><b *ngIf="row.history_type == '--'"
+                  >succesfully log out into the system</b
+                >
+                <b *ngIf="row.history_type == '-'">delete</b>
+                <b *ngIf="row.history_type == '~'">edit</b>
+                <b *ngIf="row.category">
+                  category {{ row.category }} in the FAQ</b
+                ><b *ngIf="row.email">
+                  {{ row.email }} in the email notification</b
+                ><b *ngIf="row.history_desc">
+                  {{ row.history_desc }} data in the Data Search</b
+                ><b *ngIf="row.template_name">
+                  {{ row.template_name }} in the email template</b
+                ><b *ngIf="row.variable_name">
+                  {{ row.variable_name }} in the system variable</b
+                ><b *ngIf="row.ca_name">
+                  {{ row.ca_name }} in the API Configuration</b
+                >
+                <b *ngIf="row.username"> {{row.username}} user information</b>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

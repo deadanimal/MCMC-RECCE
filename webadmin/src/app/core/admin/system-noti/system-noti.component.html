@@ -1,0 +1,497 @@
+<div class="header bg-info pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-8 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Welcome,</h6>
+          <br />
+          <h6 class="h3 text-white text-uppercase d-inline-block mb-0">
+            "Register of Certified Communications Equipment (RECCE)"
+          </h6>
+          <br /><br />
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Notification Configuration
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <!--<div class="row">
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="ml-2">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Total System Usage
+              </h5>
+            </div>
+            <div class="chart mx-auto">
+              <circle-progress
+                [percent]="55"
+                [radius]="85"
+                [space]="-20"
+                [outerStrokeGradient]="false"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="20"
+                [outerStrokeColor]="'#83b5d9'"
+                [innerStrokeColor]="'#e7e8ea'"
+                [animation]="true"
+                [animationDuration]="300"
+                [animateTitle]="true"
+                [subtitle]="'System Usage'"
+              ></circle-progress>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Portal Performance
+              </h5>
+            </div>
+            <div class="chart mx-auto">
+              <circle-progress
+                [percent]="90"
+                [radius]="85"
+                [space]="-20"
+                [outerStrokeGradient]="false"
+                [outerStrokeWidth]="20"
+                [innerStrokeWidth]="20"
+                [outerStrokeColor]="'#83b5d9'"
+                [innerStrokeColor]="'#e7e8ea'"
+                [animation]="true"
+                [animationDuration]="300"
+                [animateTitle]="true"
+                [subtitle]="'Performance'"
+              ></circle-progress>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6">
+      <div class="card card-stats">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">
+                Bounce Rate
+              </h5>
+            </div>
+            <div class="chart">
+              <div class="amchart" id="bounceNoti"></div>
+            </div>
+          </div>
+
+          <p class="mt-3 mb-0 text-sm">
+            <span class="text-success mr-2">
+              <i class="fa fa-arrow-up"> </i> 3.48%
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8">
+          <h3>Notification Configuration</h3>
+          <h6 class="ml-2">To change the notification receiver</h6>
+        </div>
+        <div class="col-4 text-right">
+          <br />
+          <button
+            class="btn btn-sm btn-neutral btn-round btn-icon"
+            (click)="openModal(addNewEmail, 'create', '')"
+            tooltip="Add Email"
+            placement="top"
+          >
+            <span class="btn-inner--icon">
+              <i class="fas fa-user-edit"> </i>
+            </span>
+
+            <span class="btn-inner--text"> Add </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="dataTables_wrapper py-4">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="dataTables_length" id="datatable_length">
+            <label>
+              Show
+              <select
+                name="datatable_length"
+                aria-controls="datatable"
+                class="form-control form-control-sm"
+                (change)="entriesChange($event)"
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="-1">All</option>
+              </select>
+              records
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <ngx-datatable
+        class="bootstrap selection-cell"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="tableEntries != -1 ? tableEntries : undefined"
+        [rows]="infoTable"
+        (activate)="onActivate($event)"
+        [sorts]="[{ prop: 'email', dir: 'asc' }]"
+      >
+        <ngx-datatable-column [sortable]="false" name="No">
+          <ng-template
+            let-rowIndex="rowIndex"
+            let-row="row"
+            ngx-datatable-cell-template
+          >
+            <strong>{{ rowIndex + 1 }}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="email">
+          <ng-template ngx-datatable-header-template>
+            <span>Email</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.email }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Last Modified Date</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.created_date | date: "dd/MM/yyyy hh:mm a" }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template ngx-datatable-header-template>
+            <span>Action</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <a
+              class="table-action"
+              tooltip="Edit email"
+              placement="top"
+              (click)="openModal(editEmail, 'update', row)"
+            >
+              <i class="fas fa-user-edit"> </i>
+            </a>
+
+            <a
+              class="table-action table-action-delete"
+              tooltip="Delete email"
+              placement="top"
+              (click)="confirm(row)"
+            >
+              <i class="fas fa-trash"> </i>
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8">
+          <h3>Email Template Configuration</h3>
+          <h6 class="ml-2">To change the email template</h6>
+        </div>
+        <div class="col-4 text-right">
+          <br />
+          <button
+            class="btn btn-sm btn-neutral btn-round btn-icon"
+            (click)="testSendEmail()"
+
+          >
+            <span class="btn-inner--icon">
+              <i class="fas fa-user-edit"> </i>
+            </span>
+
+            <span class="btn-inner--text"> Test Send </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th>No.</th>
+
+              <th>Last Modified Date</th>
+
+              <th>Template Name</th>
+
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let row of templateTable">
+              <td class="table-user">
+              </td>
+              <td>
+                <a class="text-muted">
+                  {{ row.created_date | date: "dd/MM/yyyy hh:mm a" }}
+                </a>
+              </td>
+              <td>
+                <a class="font-weight-bold">
+                  {{ row.template_name }}
+                </a>
+              </td>
+              <td class="table-actions">
+                <a
+                  class="table-action"
+                  tooltip="Edit email"
+                  placement="top"
+                  (click)="openModal(editTemplate, 'template', row)"
+                >
+                  <i class="fas fa-user-edit"> </i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #addNewEmail>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Add Email Recipient
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="newEmailForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+          <label class="form-control-label">Choose Email Type</label>
+            <select
+              class="form-control"
+              id="toggleEmail"
+              (change)="toggleEmail($event.target.value)"
+            >
+              <option>--Please Choose--</option>
+              <option value="new">New Email</option>
+              <option value="exist">Existing Email</option>
+            </select><br>
+            <div *ngIf="new==true">
+              <label class="form-control-label">New Email</label>
+              <input
+                class="form-control"
+                placeholder="Enter Email"
+                formControlName="email"
+              /><br>
+            </div>
+            <div *ngIf="exist==true">
+              <label class="form-control-label">Existing Email</label>
+              <select
+                class="form-control"
+                formControlName="email"
+              >
+                <option
+                  *ngFor="let option of emailTable"
+                  value="{{option.name}}"
+                >
+                  {{ option.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="newEmail()">
+      Create
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #editEmail>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Edit Email
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editEmailForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Email</label>
+            <input
+              class="form-control"
+              placeholder="Enter Email"
+              formControlName="email"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="update()">
+      Save
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #editTemplate>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Edit Template
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editTemplateForm">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Template Name</label>
+            <input
+              class="form-control"
+              placeholder="Enter template name"
+              formControlName="template_name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label class="form-control-label">Content</label>
+            <quill-editor
+              formControlName="body"
+              [modules]="modules"
+              [styles]="{ height: '200px' }"
+              formControlName="template_content"
+            ></quill-editor>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="template()">
+      Save
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

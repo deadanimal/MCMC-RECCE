@@ -1,0 +1,102 @@
+.logo-box {
+    text-align: center;
+    margin-bottom: 2rem;
+    .logo {
+        max-height: 10rem;
+    }
+}
+
+.mt--10 {
+    margin-top: -12rem !important
+}
+
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.path-5 {
+    background-color: transparent;
+    flex-shrink: 0;
+    height: 246px;
+    width: 1923px;
+}
+
+.auth-content {
+    background-color: #C0C0C0;
+    background-image: url('/assets/img/logo/ezgif.com-gif-maker.gif');
+    background-repeat: repeat-y;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.forget-label {
+    font-size: 0.875rem;
+    cursor: pointer;
+    span {
+        position: relative;
+        top: 2px;
+    }
+}
+
+.custom-control-label {
+    vertical-align: none !important;
+}
+
+.error-message {
+    color: #f5365c;
+    text-align: right;
+    font-size: 0.8em;
+    padding-top: 5px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.hand {
+    cursor: pointer;
+}
+.disabled {
+    pointer-events: none;
+}
+
+
+.btn-success {
+    background-color: #fabb00 !important;
+    border-color: #fabb00 !important;
+}
+
+.btn-primary {
+    background-color: #007AC0 !important;
+    border-color: #007AC0 !important;
+}
+
+.btn-warning {
+    background-color: #E64687 !important;
+    border-color: #E64687 !important;
+}
+
+.card__inner {
+    background-color: rgba(0, 0, 0, 0.9);
+    // color: #f5365c;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    opacity: 0;
+    padding: 2rem 1.3rem 2rem 2rem;
+    transition: all 0.4s ease 0s;
+}
+
+.card:hover .card__inner {
+    opacity: 0.9;
+}

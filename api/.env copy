@@ -1,0 +1,17 @@
+SECRET_KEY = BosBelanjaMekdiSatuKali
+DATABASE_URL = postgresql://prototype:r5b8avg1xefh64y2@db-postgis-prototype-do-user-812878-0.b.db.ondigitalocean.com:25060/mcmc-device?sslmode=require
+BUILD_WITH_GEO_LIBRARIES = 1
+DISABLE_COLLECTSTATIC = 1
+DEBUG = True
+AWS_STORAGE_BUCKET_NAME = pipeline-project
+AWS_SECRET_ACCESS_KEY = dE8ladt+A0OtODtB12fma2Q/ESWF4XhEcy4fPZBE7kQ
+AWS_S3_REGION_NAME = sgp1
+AWS_S3_ENDPOINT_URL = https://sgp1.digitaloceanspaces.com
+AWS_ACCESS_KEY_ID = DA5VG5FZZV6HKNPES2TD
+TWILIO_ID = AC0e734015c6d217cbde2f7cb3b749a670
+TWILIO_KEY= 9237e9e8db24173e7050bdc093bea2cc
+CELERY_BROKER_URL=redis://h:PCSu4gZwNtk6iMjNft96W6BGpie7cZjY@redis-16759.c52.us-east-1-4.ec2.cloud.redislabs.com:16759
+CELERY_RESULT_BACKEND=redis://h:PCSu4gZwNtk6iMjNft96W6BGpie7cZjY@redis-16759.c52.us-east-1-4.ec2.cloud.redislabs.com:16759
+ONE_SIGNAL_APP_ID=17c555e4-a398-41a6-a5f8-9e502585ff35
+ONE_SINGAL_APP_KEY=YTA0NzE3NDQtZjA3NS00MTlmLTgzMzgtYmZkMThmOTI5N2Rj
+SENDGRID_API_KEY=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

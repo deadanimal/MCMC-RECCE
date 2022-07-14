@@ -1,0 +1,119 @@
+<div class="container-fluid">
+	<footer class="footer">
+		<div class="row align-items-center justify-content-xl-between">
+			<div class="col-md-8">
+				<div class="copyright text-center text-xl-left text-muted">
+					&copy; {{ test | date: "yyyy" }}
+					All rights reserved © 
+					<a
+						href="https://www.mcmc.gov.my/en/home"
+						class="font-weight-bold ml-1"
+						target="_blank"
+					>
+						Malaysian Communications and Multimedia Commission
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4 text-right btn-wrapper">
+				<div dropdown class="dropdown no-caret mr-2" [dropup]="'true'">
+					<a
+					  id="button-dropup"
+					  dropdownToggle
+					  role="button"
+					  class="btn btn-twitter btn-icon-only rounded-circle text-light dropdown-toggle"
+					  aria-controls="dropdown-dropup"
+					>
+					  <i class="fab fa-twitter"> </i>
+					</a>
+		  
+					<div
+					  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+					  *dropdownMenu
+					>
+					  <a href="https://twitter.com/mcmc_rasmi?" target="_blank" class="dropdown-item">
+						MCMC Twitter
+					  </a>
+		  
+					  <!-- <a href="https://www.facebook.com/checkyourlabelmcmc/" target="_blank" class="dropdown-item">
+						Check Your Label Facebook
+					  </a> -->
+					</div>
+				</div>
+				<div dropdown class="dropdown no-caret mr-2" [dropup]="'true'">
+				  <a
+					id="button-dropup"
+					dropdownToggle
+					role="button"
+					class="btn btn-facebook btn-icon-only rounded-circle text-light dropdown-toggle"
+					aria-controls="dropdown-dropup"
+				  >
+					<i class="fab fa-facebook"> </i>
+				  </a>
+		
+				  <div
+					class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+					*dropdownMenu
+				  >
+					<a href="https://www.facebook.com/SuruhanjayaKomunikasiMultimediaMalaysia" target="_blank" class="dropdown-item">
+					  MCMC Facebook
+					</a>
+		
+					<a href="https://www.facebook.com/checkyourlabelmcmc/" target="_blank" class="dropdown-item">
+					  Check Your Label Facebook
+					</a>
+				  </div>
+				</div>
+				<div dropdown class="dropdown no-caret mr-2" [dropup]="'true'">
+				  <a
+					id="button-dropup"
+					dropdownToggle
+					role="button"
+					class="btn btn-instagram btn-icon-only rounded-circle text-light dropdown-toggle"
+					aria-controls="dropdown-dropup"
+				  >
+					<i class="fab fa-instagram"> </i>
+				  </a>
+		
+				  <div
+					class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+					*dropdownMenu
+				  >
+					<a href="https://www.instagram.com/skmm_mcmc" target="_blank" class="dropdown-item">
+					  MCMC Instagram
+					</a>
+		
+					<a href="https://www.instagram.com/checkyourlabel_mcmc/" target="_blank" class="dropdown-item">
+					  <a href="../assets/img/logo/MCMC New Logo_Colour.png" type="image/png"></a>Check Your Label Instagram
+					</a>
+				  </div>
+				</div>
+				<div dropdown class="dropdown no-caret" [dropup]="'true'">
+				  <a
+					id="button-dropup"
+					dropdownToggle
+					role="button"
+					class="btn btn-youtube btn-icon-only rounded-circle text-light dropdown-toggle"
+					aria-controls="dropdown-dropup"
+				  >
+					<i class="fab fa-youtube"> </i>
+				  </a>
+		
+				  <div
+					class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+					*dropdownMenu
+				  >
+					<a href="https://www.youtube.com/user/broadbandmy" target="_blank" class="dropdown-item">
+					  MCMC Youtube
+					</a>
+		
+					<a href="https://www.youtube.com/channel/UCr5pLCxXqVaDQTN2G2k8Vtw" target="_blank" class="dropdown-item">
+					  Check Your Label Youtube
+					</a>
+				  </div>
+				</div>
+			  </div>
+			 
+		</div>
+		
+	</footer>
+</div>
